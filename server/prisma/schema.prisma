@@ -1,0 +1,92 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum PrimarySkill {
+  Medical
+  CrowdControl
+  Translation
+  Swimmer
+  Sanitation
+  General
+}
+
+enum FitnessLevel {
+  High
+  Medium
+  Low
+}
+
+enum VolunteerStatus {
+  Available
+  Deployed
+  Resting
+}
+
+enum SectorType {
+  Ghat
+  Medical
+  Helpdesk
+  EntryExit
+  Camp
+}
+
+enum PriorityLevel {
+  Low
+  Medium
+  High
+  Critical
+}
+
+enum DeploymentStatus {
+  Active
+  Completed
+}
+
+model Volunteer {
+  id            Int             @id @default(autoincrement())
+  name          String
+  phone         String          @unique
+  age           Int
+  primarySkill  PrimarySkill
+  fitnessLevel  FitnessLevel    @default(Medium)
+  currentSector Int             @default(1)
+  fatigueScore  Int             @default(0)
+  shiftTiming   String          @default("06:00 AM - 02:00 PM")
+  status        VolunteerStatus @default(Available)
+  deployments   Deployment[]
+  createdAt     DateTime        @default(now())
+}
+
+model Sector {
+  id                 Int           @id
+  name               String
+  type               SectorType
+  priorityLevel      PriorityLevel @default(Low)
+  requiredSkill      PrimarySkill
+  volunteersRequired Int
+  volunteersDeployed Int           @default(0)
+  activeIncident     Boolean       @default(false)
+  incidentType       String?
+  adjacentSectors    String
+  deployments        Deployment[]
+}
+
+model Deployment {
+  id          Int              @id @default(autoincrement())
+  volunteerId Int
+  sectorId    Int
+  fromSector  Int
+  matchScore  Int
+  reason      String
+  task        String?
+  status      DeploymentStatus @default(Active)
+  deployedAt  DateTime         @default(now())
+  completedAt DateTime?
+  volunteer   Volunteer        @relation(fields: [volunteerId], references: [id])
+  sector      Sector           @relation(fields: [sectorId], references: [id])
+}
