@@ -17,15 +17,22 @@ const prisma = new PrismaClient({ adapter });
 const app = express();
 const server = http.createServer(app);
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://kumbh-sync.vercel.app',
+  'https://kumbh-sync-1y64fu6i4-utkarsh63s-projects.vercel.app',
+  /https:\/\/kumbh-sync.*\.vercel\.app$/
+];
+
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   },
 });
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 // Attach prisma and io to request for use in routes
