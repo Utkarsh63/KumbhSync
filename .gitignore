@@ -21,4 +21,4 @@ server/prisma/dev.db
 server/prisma/*.db
 
 # OS Files
-.DS_Store
+.DS_Store``
