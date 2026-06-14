@@ -31,11 +31,11 @@
 - [What is KumbhSync?](#-what-is-kumbhsync)
 - [Key Features](#-key-features)
 - [Matchmaker Engine](#-matchmaker-engine)
-- [Architecture](#-architecture)
-- [Tech Stack](#-tech-stack)
+- [Architecture](#architecture)
+- [Tech Stack](#tech-stack)
 - [Getting Started](#-getting-started)
 - [Demo Flow](#-demo-flow)
-- [Roadmap](#-roadmap)
+- [Roadmap](#roadmap)
 - [Project Impact](#-project-impact)
 
 ---
