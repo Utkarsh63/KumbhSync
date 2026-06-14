@@ -27,8 +27,6 @@
 
 ## 📌 Table of Contents
 
-## 📌 Table of Contents
-
 - [The Problem](#-the-problem)
 - [What is KumbhSync?](#-what-is-kumbhsync)
 - [Key Features](#-key-features)
